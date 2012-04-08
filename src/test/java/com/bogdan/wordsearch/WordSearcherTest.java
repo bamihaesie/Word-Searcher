@@ -9,9 +9,11 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class WordSearcherTest {
 
@@ -28,19 +30,28 @@ public class WordSearcherTest {
     }
 
     @Test
-    public void testFindWords() throws Exception {
-        wordsToFind.add("COW");
-        List<List<Square>> solution = wordSearcher.findWords(wordsToFind);
-        assertNotNull("Solution should not be null!", solution);
-        assertEquals(1, solution.size());
-        assertEquals(1, solution.get(0).size());
-        assertSquaresEqual("COW", solution.get(0));
+    public void testPopulateStack() {
+        Stack<Character> stack = wordSearcher.addLettersToStackInReverseOrder("abcd");
+        assertNotNull(stack);
+        assertEquals(new Character('a'), stack.pop());
+        assertEquals(new Character('b'), stack.pop());
+        assertEquals(new Character('c'), stack.pop());
+        assertEquals(new Character('d'), stack.pop());
+        assertTrue(stack.isEmpty());
+
+    }
+
+    @Test
+    public void testFindWord() throws Exception {
+        List<Square> solution = wordSearcher.findWord("COW");
+        assertSquaresEqual("COW", solution);
     }
     
     private void assertSquaresEqual(String word, List<Square> squares) {
-        assertEquals(word.toCharArray().length, word.toCharArray().length);
+        assertNotNull("Solution should not be null!", squares);
+        assertEquals(word.length(), squares.size());
         for (int i=0; i < word.toCharArray().length; i++) {
-            assertEquals(word.toCharArray()[i], squares.get(0).getValue());
+            assertEquals(word.toCharArray()[i], squares.get(i).getValue());
         }
     }
 }

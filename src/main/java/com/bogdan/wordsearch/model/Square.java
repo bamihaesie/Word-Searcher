@@ -4,10 +4,13 @@ public class Square {
 
     private Position position;
     private char value;
+    private Square parent;
+    private Color color;
     
     public Square(Position position, char value) {
         this.position = position;
         this.value = value;
+        this.color = Color.WHITE;
     }
 
     public Position getPosition() {
@@ -17,7 +20,23 @@ public class Square {
     public char getValue() {
         return value;
     }
-    
+
+    public void setParent(Square parent) {
+        this.parent = parent;
+    }
+
+    public Square getParent() {
+        return parent;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
     public boolean equals(Object otherObject) {
         if (otherObject instanceof Square) {
             Square otherSquare = (Square) otherObject;
@@ -34,3 +53,4 @@ public class Square {
     }
 
 }
+
