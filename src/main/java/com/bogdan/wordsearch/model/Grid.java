@@ -118,6 +118,15 @@ public class Grid {
         }
         return squares;
     }
+
+    public void resetParentsAndColors() {
+        for (int i=0 ; i<rows; i++) {
+            for (int j=0; j<columns; j++) {
+                matrix[i][j].setColor(Color.WHITE);
+                matrix[i][j].setParent(null);
+            }
+        }
+    }
     
     public String toString() {
         for (int i=0 ; i<rows; i++) {

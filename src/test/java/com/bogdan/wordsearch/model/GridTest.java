@@ -9,6 +9,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 public class GridTest {
 
@@ -46,7 +47,23 @@ public class GridTest {
     @Test
     public void testGetSquaresByValue() {
         assertEquals("Wrong number of matches returned!",
-                5, grid.getSquaresByValue('C').size());
+                6, grid.getSquaresByValue('C').size());
+    }
+    
+    @Test
+    public void testResetParentsAndColors() {
+        Square square1 = grid.getSquareAt(0, 0);
+        Square square2 = grid.getSquareAt(1, 1);
+        square1.setParent(square2);
+        square1.setColor(Color.BLACK);
+        square2.setColor(Color.GREY);
+        grid.resetParentsAndColors();
+        assertNull("Parent was not reset!",
+                square1.getParent());
+        assertEquals("Color was not reset!",
+                Color.WHITE, square1.getColor());
+        assertEquals("Color was not reset!",
+                Color.WHITE, square2.getColor());
     }
 
 }

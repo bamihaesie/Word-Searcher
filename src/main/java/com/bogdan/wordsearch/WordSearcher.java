@@ -16,17 +16,9 @@ public class WordSearcher {
     public WordSearcher(Grid grid) {
         this.grid = grid;
     }
-    
-    public List<List<Square>> findWords(List<String> words) {
-        List<List<Square>> solution = new ArrayList<List<Square>>();
-        for (String word : words) {
-            solution.add(findWord(word));
-        }
-        return solution;
-    }
-    
+
     protected List<Square> findWord(String word) {
-        
+        grid.resetParentsAndColors();
         stack = addLettersToStackInReverseOrder(word);
         List<Square> startingSquares = getSquaresByValue(word.charAt(0));
         

@@ -43,15 +43,31 @@ public class WordSearcherTest {
 
     @Test
     public void testFindWord() throws Exception {
-        List<Square> solution = wordSearcher.findWord("COW");
-        assertSquaresEqual("COW", solution);
+        String[] wordsToFind = {"HORSE",
+                                "COW",
+                                "RHINO",
+                                "JABBERWOCKY",
+                                "CAT",
+                                "DOG",
+                                "ALLIGATOR",
+                                "CHICKEN",
+                                "FROG",
+                                "BANTHA",
+                                "MOUSE",
+                                "LLAMA"};
+        for (String wordToFind : wordsToFind) {
+            List<Square> solution = wordSearcher.findWord(wordToFind);
+            assertSquaresEqual(wordToFind, solution);
+        }
     }
     
     private void assertSquaresEqual(String word, List<Square> squares) {
-        assertNotNull("Solution should not be null!", squares);
-        assertEquals(word.length(), squares.size());
+        assertNotNull("Solution null when searching for: " + word, squares);
+        assertEquals("Invalid solution size when searching for: " + word,
+                word.length(), squares.size());
         for (int i=0; i < word.toCharArray().length; i++) {
-            assertEquals(word.toCharArray()[i], squares.get(i).getValue());
+            assertEquals("Invalid square returned when searching for: " + word,
+                    word.toCharArray()[i], squares.get(i).getValue());
         }
     }
 }
