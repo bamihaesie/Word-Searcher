@@ -17,49 +17,32 @@ public class Grid {
         return matrix[x][y];
     }
 
+    public Square getSquareAt(Position position) {
+        return getSquareAt(position.getX(), position.getY());
+    }
+    
+    private Position getNeighbor(Position position, Heading heading) {
+        switch (heading) {
+            case NORTH:         return position.decrementX();
+            case NORTH_WEST:    return position.decrementX().decrementY();
+            case WEST:          return position.decrementY();
+            case SOUTH_WEST:    return position.incrementX().decrementY();
+            case SOUTH:         return position.incrementX();
+            case SOUTH_EAST:    return position.incrementX().incrementY();
+            case EAST:          return position.incrementY();
+            case NORTH_EAST:    return position.decrementX().incrementY();
+        }
+        return null;
+    }
+
     public List<Square> getNeighbors(Square square) {
         List<Square> neighbors = new ArrayList<Square>();
-
-        Position northNeighbor = square.getPosition().decrementX();
-        if (isValidPosition(northNeighbor)) {
-            neighbors.add(matrix[northNeighbor.getX()][northNeighbor.getY()]);
+        for (Heading heading : Heading.values()) {
+            Position neighbor = getNeighbor(square.getPosition(), heading);
+            if (isValidPosition(neighbor)) {
+                neighbors.add(getSquareAt(neighbor));
+            }
         }
-
-        Position northWestNeighbor = square.getPosition().decrementY().decrementX();
-        if (isValidPosition(northWestNeighbor)) {
-            neighbors.add(matrix[northWestNeighbor.getX()][northWestNeighbor.getY()]);
-        }
-
-        Position westNeighbor = square.getPosition().decrementY();
-        if (isValidPosition(westNeighbor)) {
-            neighbors.add(matrix[westNeighbor.getX()][westNeighbor.getY()]);
-        }
-
-        Position southWestNeighbor = square.getPosition().decrementY().incrementX();
-        if (isValidPosition(southWestNeighbor)) {
-            neighbors.add(matrix[southWestNeighbor.getX()][southWestNeighbor.getY()]);
-        }
-
-        Position southNeighbor = square.getPosition().incrementX();
-        if (isValidPosition(southNeighbor)) {
-            neighbors.add(matrix[southNeighbor.getX()][southNeighbor.getY()]);
-        }
-
-        Position southEastNeighbor = square.getPosition().incrementY().incrementX();
-        if (isValidPosition(southEastNeighbor)) {
-            neighbors.add(matrix[southEastNeighbor.getX()][southEastNeighbor.getY()]);
-        }
-
-        Position eastNeighbor = square.getPosition().incrementY();
-        if (isValidPosition(eastNeighbor)) {
-            neighbors.add(matrix[eastNeighbor.getX()][eastNeighbor.getY()]);
-        }
-
-        Position northEastNeighbor = square.getPosition().decrementX().incrementY();
-        if (isValidPosition(northEastNeighbor)) {
-            neighbors.add(matrix[northEastNeighbor.getX()][northEastNeighbor.getY()]);
-        }
-
         return neighbors;
     }
 
