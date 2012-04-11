@@ -1,0 +1,5 @@
+Word Search Solver
+------------------
+
+Algorithm to solve a word search puzzle. This is the more generic version of the game, in which letters don't have to be on the same row, column, or diagonal of the grid.
+ 
