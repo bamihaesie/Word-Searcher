@@ -43,10 +43,10 @@ public class WordSearcherTest {
 
     @Test
     public void testFindWord() throws Exception {
-        String[] wordsToFind = {"HORSE",
+        String[] wordsToFind = {
+                                "HORSE",
                                 "COW",
                                 "RHINO",
-                                "JABBERWOCKY",
                                 "CAT",
                                 "DOG",
                                 "ALLIGATOR",
@@ -54,7 +54,8 @@ public class WordSearcherTest {
                                 "FROG",
                                 "BANTHA",
                                 "MOUSE",
-                                "LLAMA"};
+                                "LLAMA"
+                                };
         for (String wordToFind : wordsToFind) {
             List<Square> solution = wordSearcher.findWord(wordToFind);
             assertSquaresEqual(wordToFind, solution);

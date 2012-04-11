@@ -51,4 +51,8 @@ public class Position {
         return base;
     }
     
+    public String toString() {
+        return "(" + x + ", " + y + ")";
+    }
+    
 }
