@@ -52,6 +52,10 @@ public class WordSearcher {
         return null;
     }
 
+    public void printSolution(List<Square> solution) {
+        grid.printHighlightingSolution(solution);
+    }
+
     private List<Square> buildPathFromSolution(Square solution) {
         List<Square> path = new ArrayList<Square>();
         Square currentSquare = solution;

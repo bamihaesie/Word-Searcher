@@ -47,7 +47,7 @@ public class Square {
         }
         return false;        
     }
-    
+
     public String toString() {
         return "(" + position.getX() + ", " + position.getY() + ", " + value + ")";
     }

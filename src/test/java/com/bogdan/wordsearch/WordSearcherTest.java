@@ -21,7 +21,9 @@ public class WordSearcherTest {
         WordSearcher wordSearcher = buildWordSearcherFromFileName("grid1.txt");
         List<String> wordsToFind = readWordsToFindFromFile("grid1_solution.txt");
         for (String wordToFind : wordsToFind) {
-            assertSquaresEqual(wordToFind, wordSearcher.findWord(wordToFind));
+            List<Square> solution = wordSearcher.findWord(wordToFind);
+            assertSquaresEqual(wordToFind, solution);
+            wordSearcher.printSolution(solution);
         }
     }
 
@@ -30,7 +32,9 @@ public class WordSearcherTest {
         WordSearcher wordSearcher = buildWordSearcherFromFileName("grid2.txt");
         List<String> wordsToFind = readWordsToFindFromFile("grid2_solution.txt");
         for (String wordToFind : wordsToFind) {
-            assertSquaresEqual(wordToFind, wordSearcher.findWord(wordToFind));
+            List<Square> solution = wordSearcher.findWord(wordToFind);
+            assertSquaresEqual(wordToFind, solution);
+            wordSearcher.printSolution(solution);
         }
     }
 

@@ -110,7 +110,22 @@ public class Grid {
             }
         }
     }
-    
+
+    public void printHighlightingSolution(List<Square> solution) {
+        for (int i = 0 ; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (solution.contains(matrix[i][j])) {
+                    System.out.print(new String("" + matrix[i][j].getValue()).toUpperCase()  + " ");
+                } else {
+                    System.out.print(new String("" + matrix[i][j].getValue()).toLowerCase()  + " ");
+                }
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+    @Override
     public String toString() {
         for (int i = 0 ; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
