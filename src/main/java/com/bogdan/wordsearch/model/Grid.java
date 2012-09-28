@@ -58,8 +58,8 @@ public class Grid {
     
     public List<Square> getSquaresByValue(char value) {
         List<Square> matching = new ArrayList<Square>();
-        for (int i=0; i<rows; i++) {
-            for (int j=0; j<columns; j++) {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
                 if (matrix[i][j].getValue() == value) {
                     matching.add(matrix[i][j]);
                 }
@@ -74,7 +74,7 @@ public class Grid {
             String line=bufferedReader.readLine();
             setDimensions(line);
             int i=0;
-            while ((line=bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 matrix[i] = getArrayFromLine(line, i);
                 i++;
             }            
@@ -94,7 +94,7 @@ public class Grid {
     
     private Square[] getArrayFromLine(String line, int i) {
         Square[] squares = new Square[line.length()];
-        int j=0;
+        int j = 0;
         for (char letter: line.toCharArray()) {
             squares[j] = new Square(new Position(i, j), letter);
             j++;
@@ -103,8 +103,8 @@ public class Grid {
     }
 
     public void resetParentsAndColors() {
-        for (int i=0 ; i<rows; i++) {
-            for (int j=0; j<columns; j++) {
+        for (int i = 0 ; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
                 matrix[i][j].setColor(Color.WHITE);
                 matrix[i][j].setParent(null);
             }
@@ -112,8 +112,8 @@ public class Grid {
     }
     
     public String toString() {
-        for (int i=0 ; i<rows; i++) {
-            for (int j=0; j<columns; j++) {
+        for (int i = 0 ; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
                 System.out.print(matrix[i][j] + " ");
             }
             System.out.println();

@@ -37,7 +37,8 @@ public class WordSearcher {
                 return square;
             }
             for (Square neighbor : grid.getNeighbors(square)) {      
-                if (Color.WHITE.equals(neighbor.getColor()) || Color.BLACK.equals(neighbor.getColor())) {
+                if (Color.WHITE.equals(neighbor.getColor())
+                        || Color.BLACK.equals(neighbor.getColor())) {
                     neighbor.setParent(square);
                     Square solution = findCharsStartingAt(neighbor);
                     if (solution != null) {
@@ -53,24 +54,25 @@ public class WordSearcher {
 
     private List<Square> buildPathFromSolution(Square solution) {
         List<Square> path = new ArrayList<Square>();
-        if (solution != null) {
-            while (solution != null) {
-                path.add(0, solution);
-                solution = solution.getParent();
+        Square currentSquare = solution;
+        if (currentSquare != null) {
+            while (currentSquare != null) {
+                path.add(0, currentSquare);
+                currentSquare = currentSquare.getParent();
             }
         }
         return path;
     }
 
     protected Stack<Character> addLettersToStackInReverseOrder(String word) {
-        Stack stack = new Stack<Character>();
+        Stack letterStack = new Stack<Character>();
         if (word != null && word.length() > 0) {
             char[] letters = word.toCharArray();
-            for (int i=letters.length-1; i >= 0; i--) {
-                stack.push(letters[i]);
+            for (int i = letters.length - 1; i >= 0; i--) {
+                letterStack.push(letters[i]);
             }
         }
-        return stack;
+        return letterStack;
     }
     
     private List<Square> getSquaresByValue(char value) {
